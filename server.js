@@ -14,5 +14,5 @@ server.use(express.json());
 
 server.use("/api/users", userRouter);
 server.use("/api/stories", storyRouter);
-docs(app); // 2nd param is optional
+docs(app, express); // 2nd param is optional
 module.exports = server;

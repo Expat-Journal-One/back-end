@@ -5,29 +5,29 @@ module.exports = {
   getById,
   insert,
   update,
-  remove,
+  remove
 };
 
 function get() {
-  return db("posts");
-}const db = require("../config/dbConfig")
-
-function getById(id) {
-  return db("posts").where({ id }).first();
+  return db("stories");
 }
 
-function insert(post) {
-  return db("posts")
-    .insert(post)
+function getById(id) {
+  return db("stories").where({ id }).first();
+}
+
+function insert(story) {
+  return db("stories")
+    .insert(story)
     .then((ids) => {
       return getById(ids[0]);
     });
 }
 
 function update(id, changes) {
-  return db("posts").where({ id }).update(changes);
+  return db("stories").where({ id }).update(changes);
 }
 
 function remove(id) {
-  return db("posts").where("id", id).del();
+  return db("stories").where("id", id).del();
 }

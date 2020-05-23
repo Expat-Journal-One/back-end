@@ -1,7 +1,28 @@
 const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets");
+const bcrypt = require("bcryptjs");
 
-module.exports = (req, res, next) => {
+module.exports = {
+  validatePostId,
+  auth
+}
+
+const validatePostId = (req, res, next) => {
+  db.getById(req.params.id)
+    .then((result) => {
+      if (result) {
+        req.post = result;
+        next();
+      } else {
+        res.status(400).json({ message: "invalid post id" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: "error connecting to database" });
+   });
+}
+
+const auth = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(" ")[1];
@@ -15,4 +36,4 @@ module.exports = (req, res, next) => {
   } else {
     res.status(401).send();
   }
-};
+}
