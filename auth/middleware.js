@@ -1,11 +1,9 @@
 const jwt = require("jsonwebtoken");
 const secrets = require("../config/secrets");
 const bcrypt = require("bcryptjs");
+const db = require("../story/storyDb")
 
-module.exports = {
-  validatePostId,
-  auth
-}
+
 
 const validatePostId = (req, res, next) => {
   db.getById(req.params.id)
@@ -36,4 +34,9 @@ const auth = (req, res, next) => {
   } else {
     res.status(401).send();
   }
+}
+
+module.exports = {
+  validatePostId,
+  auth
 }

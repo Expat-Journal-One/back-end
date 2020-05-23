@@ -29,5 +29,5 @@ function update(id, changes) {
 }
 
 function remove(id) {
-  return db("stories").where("id", id).del();
+    return db("stories").where({ id }).del();
 }

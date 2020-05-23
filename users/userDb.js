@@ -1,29 +1,38 @@
 const db = require("../config/dbConfig");
 
 module.exports = {
-  get,
   getById,
-  getUserPosts,
-  insert
+  getUserStories,
+  getByUsername,
+  insert,
+  remove,
 };
-
-function get() {
-  return db("users");
-}
 
 function getById(id) {
   return db("users").where({ id }).first();
 }
 
-function getUserPosts(userId) {
-  return db("posts as p")
+function getUserStories(userId) {
+  return db("stories as s")
     .join("users as u", "u.id", "p.user_id")
-    .select("p.id", "p.text", "u.name as postedBy")
-    .where("p.user_id", userId);
+    .select("s.id", "s.description", "u.username as postedBy", "s.title", "s.location", "s.image", "s.date")
+    .where("p.user_id", userId)
+}
+
+function insert(user) {
+  return db("users")
+    .insert(user)
+    .then((ids) => {
+      return getById(ids[0]);
+    });
+}
+
+function getByUsername(username) {
+  return db("users").where({ username }).first();
 }
 
 function remove(id) {
-  return db("users").where("id", id).del();
+  return db("users").where({ id }).del();
 }
 
 
