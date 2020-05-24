@@ -10,7 +10,7 @@ const server = express();
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
-docs(server); // 2nd param is optional
+const docs = require("express-docs");
 server.use("/api/users", userRouter);
 server.use("/api/stories", storyRouter);
 server.use("/api/auth", authRouter)

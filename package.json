@@ -24,7 +24,7 @@
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "express-mongoose-docs": "^0.3.2",
+    "express-mongoose-docs": "git+https://github.com/johnharris85/express-docs.git",
     "helmet": "^3.22.0",
     "jest": "^26.0.1",
     "jest-cli": "^26.0.1",
