@@ -1,4 +1,4 @@
-
+# Expat Journal Schema and Data Models
 
 | METHOD | ENDPOINT | DESCRIPTION | PROTECTED ROUTE |
 | ----------- | ----------- | ----------- | ----------- |
@@ -13,7 +13,7 @@
 | DELETE | /api/stories/:id | **stories endpoint:** deletes a story by id - only logged in user can delete their stories. only the user is able to able to delete their stories | PROTECTED |
 | PUT | /api/stories/:id | **stories endpoint:** takes a request body object and updates the story with the specified id. only logged in user can edit their stories| PROTECTED |
 
- ##Story Data Model 
+ ## Story Data Model 
  
 | id (ag) | **title** | **location**  | description | date (ag) | image | user_id (ag) | 
 | ----------- | ----------- | ----------- | ----------- |----------- | ----------- | ----------- |
@@ -21,7 +21,7 @@
 *data base only set up for image urls  |  **required*   | *auto generated (ag)* 
 
 
- ##User Data Model 
+ ## User Data Model 
  
 | id (ag) | *usernanme  | **location**  | *password | firstName | location | 
 | ----------- | ----------- | ----------- | ----------- |----------- | ----------- | 
