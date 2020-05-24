@@ -1,30 +1,30 @@
 const router = require("express").Router();
 const db = require("./userDb");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const secrets = require("../config/secrets.js");
+const {validateLoggedIn, validateUserEditSelf} = require("../auth/middleware")
 
-//stories
-router.get("/", (req, res) => {});
+router.get("/:id", (req, res) => {
+  db.getById(req.params.id)
+    .then((user) => {
+      if (!user) {
+        res.status(404).json({ error: "User not found" });
+      } else {
+        res.status(200).json(user);
+      }
+    })
+    .catch((err) =>
+      res.status(500).json({ error: "Error connecting to database" })
+    );
+});
 
-router.get("/:id", (req, res) => {});
-
-router.post("/", (req, res) => {});
-
-router.put("/:id", (req, res) => {});
-
-router.delete("/:id", (req, res) => {});
-
-
-function generateToken(user) {
-  const payload = {
-    subject: user.id,
-    username: user.username,
-  };
-  const options = {
-    expiresIn: "1d",
-  };
-  return jwt.sign(payload, secrets.jwtSecret, options);
-}
+router.delete("/:id", validateLoggedIn, validateUserEditSelf, (req, res) => {
+  db.remove(req.params.id).then(count => {
+    if (count === 1) {
+      res.status(204).send()
+    } else {
+      res.status(500).json({error: "User couldn't be deleted"})
+    }
+  })
+  .catch(err => res.status(500).json({error: "Error connecting to database"}))
+});
 
 module.exports = router;

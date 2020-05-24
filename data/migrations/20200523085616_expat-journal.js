@@ -3,18 +3,18 @@ exports.up = function (knex) {
     knex.schema
       .createTable("users", (tbl) => {
         tbl.increments();
-        tbl.string("username", 10).notNullable()
-        tbl.string("password", 15).notNullable();
-        tbl.string("firstName", 12);
-        tbl.string("location", 20);
+        tbl.string("username", 50).notNullable()
+        tbl.string("password", 50).notNullable();
+        tbl.string("firstName", 25);
+        tbl.string("location", 50);
       })
       .createTable("stories", (tbl) => {
         tbl.increments();
-        tbl.string("title", 35).notNullable();
-        tbl.string("location", 35).notNullable();
-        tbl.string("description", 128);
-        tbl.string("date", 12);
-        tbl.string("image", 20);
+        tbl.string("title", 100).notNullable();
+        tbl.string("location", 100).notNullable();
+        tbl.string("description", 2000);
+        tbl.string("date", 40);
+        tbl.string("image", 400);
         tbl
           .integer("user_id")
           .unsigned()

@@ -5,14 +5,14 @@ const db = require("../story/storyDb")
 
 
 
-const validatePostId = (req, res, next) => {
+const validateStoryId = (req, res, next) => {
   db.getById(req.params.id)
     .then((result) => {
       if (result) {
-        req.post = result;
+        req.story = result;
         next();
       } else {
-        res.status(400).json({ message: "invalid post id" });
+        res.status(400).json({ message: "invalid story id" });
       }
     })
     .catch((err) => {
@@ -20,15 +20,15 @@ const validatePostId = (req, res, next) => {
    });
 }
 
-const auth = (req, res, next) => {
+const validateLoggedIn = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
-    const token = authHeader.split(" ")[1];
-    jwt.verify(token, secrets.jwtSecret, (err, user) => {
+    const authToken = authHeader.split(" ")[1];
+    jwt.verify(authToken, secrets.jwtSecret, (err, token) => {
       if (err) {
         return res.status(403).send();
       }
-      req.user = user;
+      req.token = token;
       next();
     });
   } else {
@@ -36,7 +36,23 @@ const auth = (req, res, next) => {
   }
 }
 
+const validateUserEditStory = (req, res, next) => {
+  if (req.token.subject !== req.story.user_id) {
+    return res.status(403).json({error: "User doesn't own this story"});
+  }
+  next();
+};
+
+const validateUserEditSelf = (req, res, next) => {
+  if (req.token.subject !== req.params.id) {
+    return res.status(403).json({ error: "User only able to edit themselves" });
+  }
+  next();
+};
+
 module.exports = {
-  validatePostId,
-  auth
+  validateStoryId,
+  validateLoggedIn,
+  validateUserEditSelf,
+  validateUserEditStory
 }

@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const db = require("./storyDb");
-const bcrypt = require("bcryptjs");
-const { validatePostId, auth } = require("../auth/middleware");
+const { validateStoryId, validateLoggedIn, validateUserEditStory } = require("../auth/middleware");
 
 
 //stories
@@ -15,30 +14,34 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", validatePostId, (req, res) => {
-  res.status(200).json(req.post);
+router.get("/:id", validateStoryId, (req, res) => {
+  res.status(200).json(req.story);
 });
 
-router.post("/", (req, res) => {
-    const post = req.body
-    post.user_id = req.user.id
-    db.insert(post)
+router.post("/", validateLoggedIn, (req, res) => {
+    const story = req.body
+  story.user_id = req.token.subject
+  story.date = new Date().toDateString()
+  console.log(story)
+    db.insert(story)
       .then((result) => {
         res.status(201).send();
       })
       .catch((err) => {
+        console.log(err)
         res.status(500).json({ error: "error connecting to database" });
       });
 });
 
-router.put("/:id", validatePostId, (req, res) => {
-  const post = db
+
+router.put("/:id", validateStoryId, validateLoggedIn, validateUserEditStory, (req, res) => {
+ db
     .update(Number(req.params.id), req.body)
     .then((result) => {
       if (result === 1) {
-        res.status(204).send();
+        res.status(202).send();
       } else {
-        res.status(500).json({ error: "error updating record" });
+        res.status(500).json({ error: "Error Updating Story" });
       }
     })
     .catch((err) => {
@@ -47,13 +50,13 @@ router.put("/:id", validatePostId, (req, res) => {
 });
 
 
-router.delete("/:id", validatePostId, (req, res) => {
+router.delete("/:id", validateStoryId, validateLoggedIn, validateUserEditStory, (req, res) => {
   db.remove(Number(req.params.id))
     .then((result) => {
       if (result === 1) {
-        res.status(204).send();
+        res.status(202).send();
       } else {
-        res.status(500).json({ error: "error deleting post" });
+        res.status(500).json({ error: "error deleting story" });
       }
     })
     .catch((err) => {
