@@ -11,7 +11,7 @@ router.post("/register", (req, res) => {
   user.password = hash;
   db.insert(user)
     .then((id) => res.status(201).send())
-    .catch((err) => res.status(500).json({ error: "error registering user" }));
+    .catch((err) => res.status(500).json({ error: `error registering user, ${err}` }));
 });
 
 router.post("/login", (req, res) => {
