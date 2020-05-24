@@ -1,7 +1,7 @@
 const pgConnection = process.env.DATABASE_URL || {
-  database: "pg databasenamehere", //postgres by default
-  user: "pg usernamehere", //postgres by default
-  password: "pg passhere", //blank by default
+  database: "d5r1q2fdqr5v41", //postgres by default
+  user: "epmjsnwgthszib", //postgres by default
+  password: "fb8e860601eb1480a86b57ac1c6f31972b15ca60a52a57c52be0c6fc2d3cad6c", //blank by default
 };
 
 module.exports = {
