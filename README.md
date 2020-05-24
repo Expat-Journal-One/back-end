@@ -15,7 +15,7 @@
 
  ## Story Data Model 
  
-| id (ag) | **title** | **location**  | description | date (ag) | image | user_id (ag) | 
+| id (ag) | ***title** | ***location**  | description | date (ag) | image | user_id (ag) | 
 | ----------- | ----------- | ----------- | ----------- |----------- | ----------- | ----------- |
 
 *data base only set up for image urls  |  **required*   | *auto generated (ag)* 
@@ -23,7 +23,7 @@
 
  ## User Data Model 
  
-| id (ag) | **usernanme**  | **location**  | *password | firstName | location | 
+| id (ag) | ***usernanme**  | location  | ***password** | firstName | location | 
 | ----------- | ----------- | ----------- | ----------- |----------- | ----------- | 
 
-  **required*   | *auto generated (ag)* 
+  ***required**   | *auto generated (ag)* 
