@@ -18,7 +18,7 @@
 | id (ag) | ***title** | ***location**  | description | date (ag) | image | user_id (ag) | 
 | ----------- | ----------- | ----------- | ----------- |----------- | ----------- | ----------- |
 
-*data base only set up for image urls  |  **required*   | *auto generated (ag)* 
+*data base only set up for image urls*  |  ***required**   | *auto generated (ag)* 
 
 
  ## User Data Model 
