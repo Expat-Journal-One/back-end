@@ -18,13 +18,16 @@ router.get("/:id", (req, res) => {
 
 router.delete("/:id", validateLoggedIn, validateUserEditSelf, (req, res) => {
   db.remove(req.params.id).then(count => {
+    console.log(count)
     if (count === 1) {
       res.status(204).send()
     } else {
       res.status(500).json({error: "User couldn't be deleted"})
     }
   })
-  .catch(err => res.status(500).json({error: "Error connecting to database"}))
+    .catch(err => {
+      res.status(500).json({ error: "Error connecting to database" })
+    })
 });
 
 module.exports = router;

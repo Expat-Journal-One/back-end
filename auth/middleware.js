@@ -44,7 +44,7 @@ const validateUserEditStory = (req, res, next) => {
 };
 
 const validateUserEditSelf = (req, res, next) => {
-  if (req.token.subject !== req.params.id) {
+  if (req.token.subject !== Number(req.params.id)) {
     return res.status(403).json({ error: "User only able to edit themselves" });
   }
   next();
