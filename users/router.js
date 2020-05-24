@@ -12,7 +12,7 @@ router.get("/:id", (req, res) => {
       }
     })
     .catch((err) =>
-      res.status(500).json({ error: "Error connecting to database" })
+      res.status(500).json({ error: `Error connecting to database, ${err}` })
     );
 });
 
