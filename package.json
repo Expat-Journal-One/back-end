@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index,js",
+    "server": "nodemon index.js",
     "test": "jest --watch",
     "test:coverage": "node_modules/.bin/jest --runInBand --coverage"
   },
