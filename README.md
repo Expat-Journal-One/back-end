@@ -1,4 +1,4 @@
-# Expat Journal Schema and Data Models
+# Expat Journal Schema and Data Models :octocat:
 
 | METHOD | ENDPOINT | DESCRIPTION | PROTECTED ROUTE |
 | ----------- | ----------- | ----------- | ----------- |
