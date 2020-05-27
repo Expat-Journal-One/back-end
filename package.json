@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "test": "jest --watch",
-    "test:coverage": "node_modules/.bin/jest --runInBand --coverage"
+    "test": "jest -i --watch",
+    "test:coverage": "node_modules/.bin/jest --runInBand --coverage",
+    "runner": "jest-serial-runner" 
   },
   "repository": {
     "type": "git",

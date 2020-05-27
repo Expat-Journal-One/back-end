@@ -12,7 +12,7 @@ describe("auth/router.js", () => {
   describe("register", () => {
     //correct usage of api - successful response
 
-    it("should successfully register user", async () => {
+    test("should successfully register user", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -26,7 +26,7 @@ describe("auth/router.js", () => {
 
     //incorrect usage of api - unsuccessful response
 
-    it("it should error without a password", async () => {
+    test("it should error without a password", async () => {
       const user = {
         username: "test3",
       };
@@ -37,7 +37,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("it should error without a username", async () => {
+    test("it should error without a username", async () => {
       const user = {
         password: "testvalues",
       };
@@ -48,7 +48,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("should error if route is incorrect", async () => {
+    test("should error if route is incorrect", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -58,7 +58,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("errors when incorrect CRUD method is used, Edit", async () => {
+    test("errors when incorrect CRUD method is used, Edit", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -70,7 +70,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("errors when incorrect CRUD method is used, Delete", async () => {
+    test("errors when incorrect CRUD method is used, Delete", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -82,7 +82,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("errors when incorrect CRUD method is used, Get", async () => {
+    test("errors when incorrect CRUD method is used, Get", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -98,7 +98,7 @@ describe("auth/router.js", () => {
   describe("login", () => {
     //correct usage of api - successful response
 
-    it("should successfully login", async () => {
+    test("should successfully login", async () => {
       const expectedStatusCode = 200;
       const user = {
         username: "test2",
@@ -114,7 +114,7 @@ describe("auth/router.js", () => {
 
     //incorrect usage of api - unsuccessful response
 
-    it("it rejects bad password", async () => {
+    test("it rejects bad password", async () => {
       const expectedStatusCode = 401;
       const user = {
         username: "test3",
@@ -129,7 +129,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("it should error without a username", async () => {
+    test("it should error without a username", async () => {
       const user = {
         password: "testvalues",
       };
@@ -138,7 +138,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("should error if route is incorrect", async () => {
+    test("should error if route is incorrect", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -148,7 +148,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("errors when incorrect CRUD method is used, Edit", async () => {
+    test("errors when incorrect CRUD method is used, Edit", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -158,7 +158,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("errors when incorrect CRUD method is used, Delete", async () => {
+    test("errors when incorrect CRUD method is used, Delete", async () => {
       const user = {
         username: "test3",
         password: "testvalues",
@@ -170,7 +170,7 @@ describe("auth/router.js", () => {
       expect(response.status).toEqual(expectedStatusCode);
     });
 
-    it("errors when incorrect CRUD method is used, Get", async () => {
+    test("errors when incorrect CRUD method is used, Get", async () => {
       const user = {
         username: "test3",
         password: "testvalues",

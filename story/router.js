@@ -22,7 +22,6 @@ router.post("/", validateLoggedIn, (req, res) => {
     const story = req.body
   story.user_id = req.token.subject
   story.date = new Date().toDateString()
-  console.log(story)
     db.insert(story)
       .then((result) => {
         res.status(201).send();

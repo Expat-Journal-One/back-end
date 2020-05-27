@@ -18,7 +18,6 @@ router.get("/:id", (req, res) => {
 
 router.delete("/:id", validateLoggedIn, validateUserEditSelf, (req, res) => {
   db.remove(req.params.id).then(count => {
-    console.log(count)
     if (count === 1) {
       res.status(204).send()
     } else {
