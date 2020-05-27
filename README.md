@@ -23,7 +23,7 @@
 
  ## User Data Model 
  
-| id (ag) | ***usernanme**  | location  | ***password** | firstName | location | 
-| ----------- | ----------- | ----------- | ----------- |----------- | ----------- | 
+| id (ag) | ***usernanme**  | location  | ***password** | firstName | 
+| ----------- | ----------- | ----------- | ----------- |----------- | 
 
   ***required**   | *auto generated (ag)* 
